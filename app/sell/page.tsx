@@ -118,7 +118,7 @@ export default function SellPage() {
             {/* Price */}
             <div className="space-y-1.5">
               <Label htmlFor="price">
-                Price (USD) <span className="text-red-500">*</span>
+                Price (CAD) <span className="text-red-500">*</span>
               </Label>
               <div className="relative">
                 <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-zinc-400">
@@ -144,6 +144,14 @@ export default function SellPage() {
               <Label>
                 Video <span className="text-red-500">*</span>
               </Label>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="video/mp4,video/quicktime,video/x-msvideo"
+                className="hidden"
+                onChange={handleFileChange}
+              />
 
               {uploadState.status === "idle" || uploadState.status === "error" ? (
                 <button
