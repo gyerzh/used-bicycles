@@ -127,7 +127,8 @@ export default function Home() {
           <p className="text-sm text-zinc-500">{filtered.length} bicycles found</p>
 
           {filtered.map((bike) => (
-            <Card key={bike.id} className="overflow-hidden rounded-2xl">
+            <Link key={bike.id} href={`/buy/${bike.id}`}>
+            <Card className="overflow-hidden rounded-2xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={bike.image}
@@ -147,6 +148,7 @@ export default function Home() {
                 <span className="text-sm text-zinc-400">{bike.date}</span>
               </CardFooter>
             </Card>
+            </Link>
           ))}
 
           {filtered.length === 0 && (

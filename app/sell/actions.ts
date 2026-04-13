@@ -1,23 +1,17 @@
 "use server"
 
 import { z } from "zod"
-
-const listingSchema = z.object({
-  title: z.string().min(1, "Title is required."),
-  description: z.string().min(1, "Description is required."),
-  price: z.coerce.number().positive("Price must be greater than 0."),
-  videoUrl: z.url("A valid uploaded video is required."),
-})
+import { createListing as dbCreateListing } from "@/db/listings"
+import { listingSchema, type ListingInput } from "@/zod/listings"
 
 export type ListingState = {
-  errors?: Partial<Record<keyof z.infer<typeof listingSchema>, string[]>>
+  errors?: Partial<Record<keyof ListingInput, string[]>>
   success?: { listingId: string }
 }
 
 function generateListingId(): string {
-  const timestamp = Date.now()
   const suffix = Math.random().toString(36).toUpperCase().slice(2, 10)
-  return `BCY-${timestamp}-${suffix}`
+  return `BCY-${Date.now()}-${suffix}`
 }
 
 export async function createListing(
@@ -32,11 +26,12 @@ export async function createListing(
   })
 
   if (!result.success) {
-    return { errors: result.error.flatten().fieldErrors }
+    return { errors: z.flattenError(result.error).fieldErrors }
   }
 
-  // TODO: persist to database once schema is ready
-  console.log("new listing", result.data)
+  const id = generateListingId()
 
-  return { success: { listingId: generateListingId() } }
+  await dbCreateListing({ id, ...result.data })
+
+  return { success: { listingId: id } }
 }

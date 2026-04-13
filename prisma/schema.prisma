@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -10,4 +5,25 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model Listing {
+  id           String        @id           // BCY-{timestamp}-{random}
+  title        String
+  description  String
+  price        Float
+  videoUrl     String
+  createdAt    DateTime      @default(now())
+  transactions Transaction[]
+}
+
+model Transaction {
+  id               String   @id           // PAY-{timestamp}-{random}
+  listingId        String
+  listing          Listing  @relation(fields: [listingId], references: [id])
+  paymentReceived  Boolean  @default(true) // set true on creation (Interac trust-based MVP)
+  buyerConfirmed   Boolean  @default(false)
+  sellerInterac    String?
+  sellerPaid       Boolean  @default(false)
+  createdAt        DateTime @default(now())
 }
