@@ -10,6 +10,10 @@ export function createListing(data: {
   return prisma.listing.create({ data })
 }
 
+export function getAllListings() {
+  return prisma.listing.findMany({ orderBy: { createdAt: "desc" } })
+}
+
 export function getListingById(id: string) {
   return prisma.listing.findUnique({ where: { id } })
 }
