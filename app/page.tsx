@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { Search, SlidersHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -75,11 +76,11 @@ export default function Home() {
       <div className="mx-auto max-w-lg bg-white min-h-screen">
         {/* Header */}
         <div className="flex items-center justify-between px-4 pt-6 pb-4">
-          <h1 className="text-2xl font-black tracking-wide uppercase">
+          <h1 className="text-2xl font-bold tracking-wide uppercase">
             Buy/Sell Bikes
           </h1>
-          <Button className="rounded-full bg-blue-600 hover:bg-blue-700 text-white px-5 h-10">
-            Sell Bicycle
+          <Button asChild className="rounded-full bg-blue-600 hover:bg-blue-700 text-white px-5 h-10">
+            <Link href="/sell">Sell Bicycle</Link>
           </Button>
         </div>
 
