@@ -93,13 +93,19 @@ export default function SellPage() {
           <form action={formAction} className="space-y-6">
             {/* Title */}
             <div className="space-y-1.5">
-              <Label htmlFor="title">
-                Bicycle Title <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="title">
+                  Bicycle Title <span className="text-red-500">*</span>
+                </Label>
+                <span className={`text-xs ${title.length > 80 ? "text-red-500" : "text-zinc-400"}`}>
+                  {title.length}/80
+                </span>
+              </div>
               <Input
                 id="title"
                 name="title"
                 placeholder="e.g., Trek Mountain Bike - Excellent Condition"
+                maxLength={80}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -110,15 +116,21 @@ export default function SellPage() {
 
             {/* Description */}
             <div className="space-y-1.5">
-              <Label htmlFor="description">
-                Description <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="description">
+                  Description <span className="text-red-500">*</span>
+                </Label>
+                <span className={`text-xs ${description.length > 500 ? "text-red-500" : "text-zinc-400"}`}>
+                  {description.length}/500
+                </span>
+              </div>
               <Textarea
                 id="description"
                 name="description"
                 rows={5}
                 placeholder="Describe your bicycle's condition, features, and any included accessories..."
                 className="resize-none"
+                maxLength={500}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -142,9 +154,9 @@ export default function SellPage() {
                   id="price"
                   name="price"
                   type="number"
-                  min="0"
-                  step="0.01"
-                  placeholder="0.00"
+                  min="1"
+                  step="1"
+                  placeholder="0"
                   className="pl-7"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
