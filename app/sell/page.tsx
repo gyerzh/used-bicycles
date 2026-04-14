@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { createListing, type ListingState } from "./actions"
 import { ListingSuccess } from "@/components/listing-success"
+import { listingSchema } from "@/zod/listings"
 
 type UploadState =
   | { status: "idle" }
@@ -26,7 +27,16 @@ export default function SellPage() {
   const [uploadState, setUploadState] = React.useState<UploadState>({
     status: "idle",
   })
+  const [title, setTitle] = React.useState("")
+  const [description, setDescription] = React.useState("")
+  const [price, setPrice] = React.useState("")
   const fileInputRef = React.useRef<HTMLInputElement>(null)
+
+  const videoUrl = uploadState.status === "done" ? uploadState.url : ""
+  const canSubmit =
+    !pending &&
+    uploadState.status !== "uploading" &&
+    listingSchema.safeParse({ title, description, price, videoUrl }).success
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -90,6 +100,8 @@ export default function SellPage() {
                 id="title"
                 name="title"
                 placeholder="e.g., Trek Mountain Bike - Excellent Condition"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
               {formState.errors?.title && (
                 <p className="text-xs text-red-500">{formState.errors.title[0]}</p>
@@ -107,6 +119,8 @@ export default function SellPage() {
                 rows={5}
                 placeholder="Describe your bicycle's condition, features, and any included accessories..."
                 className="resize-none"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
               {formState.errors?.description && (
                 <p className="text-xs text-red-500">
@@ -132,6 +146,8 @@ export default function SellPage() {
                   step="0.01"
                   placeholder="0.00"
                   className="pl-7"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
               {formState.errors?.price && (
@@ -217,7 +233,7 @@ export default function SellPage() {
 
             <Button
               type="submit"
-              disabled={pending || uploadState.status === "uploading"}
+              disabled={!canSubmit}
               className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold"
             >
               {pending ? "Publishing..." : "Publish Listing"}

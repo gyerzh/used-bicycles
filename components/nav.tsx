@@ -11,7 +11,7 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <Link
             href="/check-listing"
-            className="hidden sm:block text-sm text-zinc-600 hover:text-zinc-900"
+            className="text-sm text-zinc-600 hover:text-zinc-900"
           >
             Check Order
           </Link>

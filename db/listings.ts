@@ -11,7 +11,10 @@ export function createListing(data: {
 }
 
 export function getAllListings() {
-  return prisma.listing.findMany({ orderBy: { createdAt: "desc" } })
+  return prisma.listing.findMany({
+    where: { transactions: { none: {} } },
+    orderBy: { createdAt: "desc" },
+  })
 }
 
 export function getListingById(id: string) {

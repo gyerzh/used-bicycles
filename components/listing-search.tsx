@@ -39,7 +39,7 @@ export function ListingSearch({ listings, minPrice, maxPrice }: Props) {
       <div className="flex flex-col lg:flex-row gap-6">
 
         {/* ── Sidebar (filters) ── */}
-        <aside className="w-full lg:w-72 shrink-0 space-y-4">
+        <aside className="w-full lg:w-72 shrink-0 space-y-4 lg:sticky lg:top-[57px] lg:self-start">
           <h1 className="text-xl font-bold uppercase tracking-wide hidden lg:block">
             Browse Listings
           </h1>

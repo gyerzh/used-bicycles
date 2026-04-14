@@ -65,7 +65,7 @@ export function ListingSuccess({ listingId }: ListingSuccessProps) {
           asChild
           className="flex-1 h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold"
         >
-          <Link href="/sell">List Another Bicycle</Link>
+          <a href="/sell">List Another Bicycle</a>
         </Button>
       </div>
     </div>
