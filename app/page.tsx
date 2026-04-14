@@ -1,6 +1,8 @@
 import { getAllListings } from "@/db/listings"
 import { ListingSearch } from "@/components/listing-search"
 
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
   const listings = (await getAllListings()).map((l) => ({
     ...l,
