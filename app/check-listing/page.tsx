@@ -2,10 +2,8 @@ import { CheckListingClient } from "@/components/check-listing-client"
 
 export default function CheckListingPage() {
   return (
-    <div className="min-h-screen bg-zinc-100">
-      <div className="mx-auto max-w-lg bg-white min-h-screen">
-        <CheckListingClient />
-      </div>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <CheckListingClient />
     </div>
   )
 }

@@ -55,10 +55,10 @@ export default function SellPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-100">
-      <div className="mx-auto max-w-lg bg-white min-h-screen">
+    <div className="max-w-xl mx-auto px-4 py-8">
+      <div className="bg-white rounded-2xl px-6 py-8">
         {/* Back nav */}
-        <div className="px-4 pt-5 pb-4 border-b border-zinc-100">
+        <div className="pb-4 mb-2 border-b border-zinc-100">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900"
@@ -68,7 +68,7 @@ export default function SellPage() {
           </Link>
         </div>
 
-        <div className="px-4 pt-6 pb-10">
+        <div className="pt-6">
           <h1 className="text-2xl font-bold uppercase tracking-wide mb-1">
             Sell Your Bicycle
           </h1>

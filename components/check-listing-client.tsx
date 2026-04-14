@@ -32,9 +32,8 @@ export function CheckListingClient() {
   const activeSellerListing = payoutState.listing ?? sellerState.listing
 
   return (
-    <div className="px-4 pt-5 pb-12">
-      {/* Back nav */}
-      <div className="pb-4 mb-6 border-b border-zinc-100">
+    <div>
+      <div className="mb-6">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900"
@@ -51,9 +50,9 @@ export function CheckListingClient() {
         Enter your Buyer ID or Seller ID to check the status of a transaction.
       </p>
 
-      <div className="space-y-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ── Buyer section ── */}
-        <section className="space-y-4">
+        <section className="bg-white rounded-2xl p-6 space-y-4">
           <h2 className="text-sm font-black uppercase tracking-wide text-zinc-700">
             I am a Buyer
           </h2>
@@ -130,10 +129,8 @@ export function CheckListingClient() {
           )}
         </section>
 
-        <div className="h-px bg-zinc-100" />
-
         {/* ── Seller section ── */}
-        <section className="space-y-4">
+        <section className="bg-white rounded-2xl p-6 space-y-4">
           <h2 className="text-sm font-black uppercase tracking-wide text-zinc-700">
             I am a Seller
           </h2>

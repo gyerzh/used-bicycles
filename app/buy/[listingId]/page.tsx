@@ -12,8 +12,8 @@ export default async function BuyPage({ params }: Props) {
   if (!listing) notFound()
 
   return (
-    <div className="min-h-screen bg-zinc-100">
-      <div className="mx-auto max-w-lg bg-white min-h-screen">
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="bg-white rounded-2xl overflow-hidden">
         <BuyForm listing={listing} />
       </div>
     </div>
