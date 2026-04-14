@@ -95,9 +95,8 @@ export function ListingSearch({ listings, minPrice, maxPrice }: Props) {
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-md transition-shadow">
                   <video
                     src={bike.videoUrl}
-                    muted
-                    playsInline
-                    className="w-full h-44 object-cover"
+                    preload="metadata"
+                    className="w-full h-44 object-cover pointer-events-none"
                   />
                   <CardContent className="pt-3 space-y-1">
                     <h2 className="font-black text-sm uppercase tracking-wide leading-snug">
