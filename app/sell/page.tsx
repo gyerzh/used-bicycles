@@ -153,13 +153,12 @@ export default function SellPage() {
                 <Input
                   id="price"
                   name="price"
-                  type="number"
-                  min="1"
-                  step="1"
+                  type="text"
+                  inputMode="numeric"
                   placeholder="0"
                   className="pl-7"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value.replace(/\D/g, ""))}
                 />
               </div>
               {formState.errors?.price && (
